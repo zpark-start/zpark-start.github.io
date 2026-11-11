@@ -412,11 +412,15 @@ const CONTENT = {
       osc(f * 2, { dur: dur * 0.55, vol: vol * 0.3, at, attack: 0.004 });
       osc(f * 3, { dur: dur * 0.25, vol: vol * 0.1, at, attack: 0.003 });
     };
+    // Tab-switch pitch per main tab (C major chord, low → high, left → right). Tweak freely.
+    const TAB_HZ = { about: 261.63, research: 329.63, ventures: 392.0, experience: 523.25 };
     const lib = {
       // layered click: noise transient + pitched pop with a fast pitch drop
       click: () => { noise({ f: 4200, q: 0.8, dur: 0.022, vol: 0.45 }); osc(1150, { to: 230, toT: 0.05, dur: 0.08, vol: 0.55 }); },
       hover: () => osc(3600, { type: "triangle", dur: 0.016, vol: 0.05 }),
       thump: () => { osc(150, { to: 46, toT: 0.15, dur: 0.22, vol: 0.9 }); noise({ f: 260, type: "lowpass", dur: 0.06, vol: 0.4 }); },
+      // main-nav tab switch: the same thump, pitched to the destination tab (see TAB_HZ)
+      tabSwitch: (id) => { const f = TAB_HZ[id]; if (!f) return; osc(f, { to: f * (46 / 150), toT: 0.15, dur: 0.22, vol: 0.9 }); noise({ f: 260, type: "lowpass", dur: 0.06, vol: 0.4 }); },
       chime: () => { const i = 6 + Math.floor(Math.random() * 4); bell(note(i), 0.07, 0.2); bell(note(i + 2), 0.15, 0.13); },
       success: () => [0, 2, 4].forEach((k, j) => bell(note(7 + k), j * 0.09, 0.3, 0.75)),
       tick: () => { noise({ f: 5200, q: 2, dur: 0.012, vol: 0.25 }); osc(2300, { type: "triangle", dur: 0.03, vol: 0.2 }); },
@@ -433,7 +437,7 @@ const CONTENT = {
       tear: () => { for (let k = 0; k < 5; k++) noise({ f: 1400 + Math.random() * 2600, q: 3, dur: 0.03, vol: 0.45, at: k * 0.035 }); osc(180, { to: 70, dur: 0.26, vol: 0.5 }); },
     };
     lib.page = lib.chime; lib.select = lib.pop; lib.tab = lib.thump;
-    const GAP = { blip: 90, tick: 35, slot: 50, bump: 150, fizzle: 900, hover: 60, chime: 220, thump: 120, click: 40 };
+    const GAP = { blip: 90, tick: 35, slot: 50, bump: 150, fizzle: 900, hover: 60, chime: 220, thump: 120, tabSwitch: 120, click: 40 };
     const last = {};
     function run(name, arg) {
       if (voices >= 4) return;               // never stack more than a few sounds
@@ -2003,7 +2007,8 @@ const CONTENT = {
       enter(subEl, true);
       afterShow(page, sub);
     }
-    if (!initial && (topChanged || subChanged)) Sound.play("thump");
+    if (!initial && topChanged) Sound.play("tabSwitch", page.id);
+    else if (!initial && subChanged) Sound.play("thump");
     if (anchor) setTimeout(() => { const el = document.getElementById(anchor); if (el) el.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth", block: "start" }); }, topChanged ? 320 : 30);
     current.top = page.id;
     if (sub) current.sub[page.id] = sub.id;
