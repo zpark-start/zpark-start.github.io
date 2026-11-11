@@ -440,8 +440,11 @@ const CONTENT = {
     const GAP = { blip: 90, tick: 35, slot: 50, bump: 150, fizzle: 900, hover: 60, chime: 220, thump: 120, tabSwitch: 120, click: 40 };
     const last = {};
     function run(name, arg) {
-      if (voices >= 4) return;               // never stack more than a few sounds
-      voices++; setTimeout(() => voices--, 420);
+      // hover ticks are 16 ms, so they don't hold a slot; the tab-switch note is never dropped
+      if (name !== "hover") {
+        if (voices >= 4 && name !== "tabSwitch") return; // never stack more than a few sounds
+        voices++; setTimeout(() => voices--, 420);
+      }
       try { lib[name](arg); } catch (e) { /* ignore */ }
     }
     function play(name, arg) {
