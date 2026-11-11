@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Zuan Park</title>
+  <meta name="description" content="Zuan Park is a first-year Biomedical Engineering Honors student at the University of Minnesota planning on an MD/PhD, doing research in the van Berlo Lab and the Asakura Lab.">
+  <meta name="theme-color" content="#f2efe9">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- anime.js v4 (UMD bundle → global `anime`) -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/dist/bundles/anime.umd.min.js"></script>
+  <script>
+    if (window.anime && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+    }
+  </script>
+</head>
+<body>
+  <canvas class="ecm" aria-hidden="true"></canvas>
+  <a class="skip" href="#main" data-skip>Skip to content</a>
+  <div class="cursor gone" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"></span></div>
+
+  <header class="nav">
+    <nav class="nav-tabs" aria-label="Main">
+      <div class="tabs" role="tablist" aria-label="Pages" data-tabs></div>
+    </nav>
+    <div class="nav-end">
+      <button class="sound-btn" type="button" aria-pressed="false" aria-label="Sound effects" data-sound>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path class="spk" d="M4 9.5h3.2L11.5 6v12l-4.3-3.5H4z"/>
+          <path class="wave" d="M14.6 9.3a3.8 3.8 0 0 1 0 5.4M17 7a7 7 0 0 1 0 10"/>
+          <path class="mute" d="M15 9.5l5 5M20 9.5l-5 5"/>
+        </svg>
+      </button>
+      <a class="brand" href="#/about" aria-label="Zuan Park, home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 6.5H11L4.5 17.5H13.5V6.5H16.4A3.15 3.15 0 0 1 16.4 12.8H13.5"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1" data-pages></main>
+
+  <footer class="footer">
+    <div class="wrap mono"><p data-footer></p></div>
+  </footer>
+
+  <div class="sr-only" aria-live="polite" data-live></div>
+  <script src="main.js"></script>
+</body>
+</html>

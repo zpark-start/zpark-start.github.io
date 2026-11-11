@@ -1,0 +1,16 @@
+# Publish ONLY the website: ignore everything, then allow the site files.
+*
+!.gitignore
+!index.html
+!styles.css
+!main.js
+!assets/
+!assets/**
+# never publish OS clutter, screenshots, notes, exports or documents, even inside assets
+.DS_Store
+**/.DS_Store
+*.pdf
+*.md
+*.zip
+Screenshot*
+**/Screenshot*
