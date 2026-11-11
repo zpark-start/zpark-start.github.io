@@ -330,7 +330,7 @@ const CONTENT = {
     copied: "Copied",
   },
   links: [
-    { key: "email", label: "Email", text: "park3364@umn.edu", href: "mailto:park3364@umn.edu" },
+    { key: "email", label: "Email", text: "zuanpark@gmail.com", href: "mailto:zuanpark@gmail.com" },
     { key: "linkedin", label: "LinkedIn", text: "linkedin.com/in/zuanpark", href: "https://www.linkedin.com/in/zuanpark" },
     { key: "github", label: "GitHub", text: "github.com/zpark-start", href: "https://github.com/zpark-start" },
   ],
