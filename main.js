@@ -419,8 +419,14 @@ const CONTENT = {
       click: () => { noise({ f: 4200, q: 0.8, dur: 0.022, vol: 0.45 }); osc(1150, { to: 230, toT: 0.05, dur: 0.08, vol: 0.55 }); },
       hover: () => osc(3600, { type: "triangle", dur: 0.016, vol: 0.05 }),
       thump: () => { osc(150, { to: 46, toT: 0.15, dur: 0.22, vol: 0.9 }); noise({ f: 260, type: "lowpass", dur: 0.06, vol: 0.4 }); },
-      // main-nav tab switch: the same thump, pitched to the destination tab (see TAB_HZ)
-      tabSwitch: (id) => { const f = TAB_HZ[id]; if (!f) return; osc(f, { to: f * (46 / 150), toT: 0.15, dur: 0.22, vol: 0.9 }); noise({ f: 260, type: "lowpass", dur: 0.06, vol: 0.4 }); },
+      // main-nav tab switch: a clear, steady note at the destination tab's pitch (see TAB_HZ),
+      // with the same soft low "thump" transient on top
+      tabSwitch: (id) => {
+        const f = TAB_HZ[id]; if (!f) return;
+        osc(f, { type: "triangle", dur: 0.55, vol: 0.8, attack: 0.004 });
+        osc(f * 2, { dur: 0.3, vol: 0.16, attack: 0.004 });
+        noise({ f: 260, type: "lowpass", dur: 0.06, vol: 0.4 });
+      },
       chime: () => { const i = 6 + Math.floor(Math.random() * 4); bell(note(i), 0.07, 0.2); bell(note(i + 2), 0.15, 0.13); },
       success: () => [0, 2, 4].forEach((k, j) => bell(note(7 + k), j * 0.09, 0.3, 0.75)),
       tick: () => { noise({ f: 5200, q: 2, dur: 0.012, vol: 0.25 }); osc(2300, { type: "triangle", dur: 0.03, vol: 0.2 }); },
@@ -1997,7 +2003,8 @@ const CONTENT = {
         $$(".page", pagesEl).forEach((p) => { p.hidden = p !== pageEl; if (p !== pageEl) { p.style.opacity = ""; p.style.transform = ""; } });
         showSub(); mountFig1(page, sub);
         window.scrollTo(0, 0);
-        if (page.id === "about" && !heroPlayed) heroIntro(); else enter(pageEl, !initial);
+        // no random chime on main-tab switches, so the tab's own note is what you hear
+        if (page.id === "about" && !heroPlayed) heroIntro(); else enter(pageEl, false);
         afterShow(page, sub);
       };
       if (oldEl && MOTION && !initial) A.animate(oldEl, { opacity: [1, 0], translateY: [0, -6], duration: 150, ease: "inQuad", onComplete: swap });
