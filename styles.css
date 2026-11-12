@@ -635,3 +635,10 @@ body::before {
 .fig-no { background: var(--accent); color: var(--paper-3); }
 .fig { border-color: rgba(31, 58, 158, 0.35); }
 .prose a:hover, .cap-src a:hover, .src a:hover { text-decoration-thickness: 2px; }
+
+/* Quest card photo (the same photo the CoQuest app shows for that quest) */
+.qcard { height: 500px; }
+.q-photo { position: relative; display: block; margin: -22px -22px 0; height: 190px; border-radius: 17px 17px 0 0; overflow: hidden; border-bottom: 1px solid var(--ink); background: var(--paper-2); flex: none; }
+.q-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.q-credit { position: absolute; right: 6px; bottom: 6px; font: 400 0.56rem var(--mono); color: #fff; background: rgba(20, 21, 25, .55); padding: 1px 6px; border-radius: 4px; }
+@media (max-width: 720px) { .qcard { height: 540px; } .q-photo { height: 170px; } }

@@ -64,7 +64,6 @@ const CONTENT = {
   /* Research */
   research: {
     title: "Research",
-    lede: "I work in two labs at the University of Minnesota. Pick a topic to see the figure that goes with it.",
     inflammasome: {
       kicker: "van Berlo Lab · Lillehei Heart Institute",
       title: "How an immune cell sounds the alarm",
@@ -226,11 +225,11 @@ const CONTENT = {
     deckSource: "From CoQuest's quest list",
     /* Real quests from CoQuest (src/data/quests.ts) */
     quests: [
-      { title: "$5 Snacks You Can't Read", hook: "Guess what's in a snack when nobody in the group can read the label.", area: "Seward", vibes: ["food", "weird", "competitive", "social"] },
-      { title: "Hold a Pose From Sunset to Dark", hook: "Whoever shows up last picks the group pose you hold at three spots until dark.", area: "Mill District / St. Anthony Main", vibes: ["outdoors", "creative", "chill", "social"] },
-      { title: "Mimic the Weisman", hook: "Recreate a piece of art with only what's in your backpacks.", area: "East Bank (campus)", vibes: ["creative", "weird", "chill"] },
-      { title: "Fourth From the Bottom at Hard Times", hook: "Count four up from the bottom of the menu board and order whatever it lands on.", area: "Cedar-Riverside / West Bank", vibes: ["food", "late-night", "social", "weird"] },
-      { title: "Skyway Speedrun", hook: "Cross downtown through the skyways without touching a sidewalk.", area: "Downtown", vibes: ["active", "competitive", "weird"] },
+      { title: "$5 Snacks You Can't Read", hook: "Guess what's in a snack when nobody in the group can read the label.", area: "Seward", photo: "snack.jpg", credit: "Sharon Mollerus, CC BY 2.0", vibes: ["food", "weird", "competitive", "social"] },
+      { title: "Hold a Pose From Sunset to Dark", hook: "Whoever shows up last picks the group pose you hold at three spots until dark.", area: "Mill District / St. Anthony Main", photo: "stone-arch.jpg", credit: "Darb02, CC BY-SA 4.0", vibes: ["outdoors", "creative", "chill", "social"] },
+      { title: "Mimic the Weisman", hook: "Recreate a piece of art with only what's in your backpacks.", area: "East Bank (campus)", photo: "weisman.jpg", credit: "Bmzuckerman, CC BY 4.0", vibes: ["creative", "weird", "chill"] },
+      { title: "Fourth From the Bottom at Hard Times", hook: "Count four up from the bottom of the menu board and order whatever it lands on.", area: "Cedar-Riverside / West Bank", photo: "hard-times.jpg", credit: "Chad Davis, CC BY-SA 2.0", vibes: ["food", "late-night", "social", "weird"] },
+      { title: "Skyway Speedrun", hook: "Cross downtown through the skyways without touching a sidewalk.", area: "Downtown", photo: "skyway.jpg", credit: "Randy Stern, CC BY 2.0", vibes: ["active", "competitive", "weird"] },
     ],
     vibeLabels: { chill: "Chill", active: "Active", food: "Food", creative: "Creative", social: "Social", weird: "Weird", outdoors: "Outdoors", competitive: "Competitive", "late-night": "Late night" },
   },
@@ -254,7 +253,6 @@ const CONTENT = {
   /* Experience */
   experience: {
     title: "Experience",
-    lede: "Clinical shadowing, awards, the groups I led, and where I volunteered.",
     awards: { title: "Honors and awards", lede: "The big numbers show how selective each one was." },
     leadership: { title: "Leading teams and clubs", lede: "Roles where I ran something, from debate practice to a hydroponics club." },
     service: { title: "Volunteering", lede: "Where I've spent time helping out since 2022." },
@@ -1673,10 +1671,12 @@ const CONTENT = {
     const card = $("[data-qcard]"), inner = $(".qcard-inner", card), front = $("[data-qfront]"), countEl = $("[data-qcount]"), btn = $("[data-draw]");
     const n = V.quests.length;
     let order = [...Array(n).keys()], pos = 0, busy = false;
+    V.quests.forEach((q) => { const im = new Image(); im.src = "assets/coquest/quests/" + q.photo; }); // preload so the flip never shows a blank photo
     const shuffle = () => { for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; } };
     function fill() {
       const q = V.quests[order[pos]];
       front.innerHTML = `
+        <span class="q-photo"><img src="assets/coquest/quests/${q.photo}" alt="${esc(q.title)}, photo from the CoQuest app" width="720" height="480"><span class="q-credit">Photo: ${esc(q.credit)} · Wikimedia Commons</span></span>
         <span class="q-area">${esc(q.area)}</span>
         <span class="q-title">${esc(q.title)}</span>
         <span class="q-hook">${esc(q.hook)}</span>
