@@ -620,3 +620,18 @@ main { flex: 1 0 auto; outline: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* ───────────────────────── A little more cobalt (same accent, used in a few more places) ───────────────────────── */
+body::before {
+  background-image:
+    linear-gradient(rgba(31, 58, 158, 0.32) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 58, 158, 0.32) 1px, transparent 1px);
+}
+::selection { background: var(--accent); color: var(--paper-3); }
+.tab:hover, .tab[aria-selected="true"] { color: var(--accent); }
+.subtab:hover { color: var(--accent); border-color: var(--accent); }
+.subtab[aria-selected="true"], .seg button[aria-pressed="true"], .choice button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--paper-3); }
+.btn:hover { background: var(--accent); border-color: var(--accent); color: var(--paper-3); }
+.fig-no { background: var(--accent); color: var(--paper-3); }
+.fig { border-color: rgba(31, 58, 158, 0.35); }
+.prose a:hover, .cap-src a:hover, .src a:hover { text-decoration-thickness: 2px; }
