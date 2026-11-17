@@ -20,17 +20,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Zuan Park</title>
   <meta name="description" content="Zuan Park is a first-year Biomedical Engineering Honors student at the University of Minnesota planning on an MD/PhD, doing research in the van Berlo Lab and the Asakura Lab.">
-  <meta name="theme-color" content="#f2efe9">
+  <meta name="theme-color" content="#f1eee6">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="styles.css">
 
-  <!-- anime.js v4 (UMD bundle → global `anime`) -->
-  <script src="https://cdn.jsdelivr.net/npm/animejs@4.5.0/dist/bundles/anime.umd.min.js"></script>
+  <!-- GSAP 3.13 + plugins, Lenis. Classic scripts, exact versions, no build step. -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
   <script>
-    if (window.anime && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (window.gsap && window.ScrollTrigger && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.documentElement.classList.add('motion');
     }
   </script>
@@ -44,9 +50,7 @@
   <div class="cursor gone" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"></span></div>
 
   <header class="nav">
-    <nav class="nav-tabs" aria-label="Main">
-      <div class="tabs" role="tablist" aria-label="Pages" data-tabs></div>
-    </nav>
+    <nav class="nav-links" aria-label="Main" data-nav></nav>
     <div class="nav-end">
       <button class="sound-btn" type="button" aria-pressed="false" aria-label="Sound effects" data-sound>
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -61,13 +65,20 @@
     </div>
   </header>
 
-  <main id="main" tabindex="-1" data-pages></main>
+  <main id="main" tabindex="-1" data-views></main>
 
   <footer class="footer">
-    <div class="wrap mono"><p data-footer></p></div>
+    <p data-footer></p>
   </footer>
 
+  <!-- page-turn sheet used between pages -->
+  <div class="wipe" aria-hidden="true">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 100 Q50 100 100 100 L100 100 Q50 100 0 100 Z"/></svg>
+    <span class="wipe-word"></span>
+  </div>
+
   <div class="sr-only" aria-live="polite" data-live></div>
+  <script src="figure-engine.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

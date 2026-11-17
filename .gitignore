@@ -4,6 +4,7 @@
 !index.html
 !styles.css
 !main.js
+!figure-engine.js
 !assets/
 !assets/**
 # never publish OS clutter, screenshots, notes, exports or documents, even inside assets
