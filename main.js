@@ -5,7 +5,7 @@ const CONTENT = {
   name: "Zuan Park",
   eyebrow: "Biomedical Engineering · University of Minnesota",
   tagline: "I study how mitochondria help immune cells start inflammation. I'm working toward an MD/PhD.",
-  heroMeta: "Minneapolis, MN · van Berlo Lab and Asakura Lab · Founding partner at CoQuest",
+  heroMeta: "Minneapolis, MN · van Berlo Lab · Founding partner at CoQuest",
   footer: "Zuan Park · Minneapolis, MN",
 
   /* Tabs, in order. `subs` become sub-tabs. */
@@ -43,7 +43,7 @@ const CONTENT = {
     title: "Abstract",
     text: [
       "I'm a first-year Biomedical Engineering student in the University of Minnesota Honors Program, and I plan to pursue an MD/PhD.",
-      "I work in two labs. In the van Berlo Lab at the Lillehei Heart Institute, I study how CMPK2, an enzyme mitochondria need to make new DNA, affects NLRP3 inflammasome signaling in macrophages. In the Asakura Lab, I looked at where albumin sits in healthy and regenerating skeletal muscle.",
+      "In the van Berlo Lab at the Lillehei Heart Institute, I study how CMPK2, an enzyme mitochondria need to make new DNA, affects NLRP3 inflammasome signaling in macrophages. I also spent time in the Asakura Lab, looking at where albumin sits in healthy and regenerating skeletal muscle.",
       "Outside the lab, I'm a founding partner at CoQuest, a startup that gives students reasons to go out and explore.",
     ],
   },
@@ -97,7 +97,7 @@ const CONTENT = {
       lab: "The Asakura Lab is part of the UMN Stem Cell Institute and the Wellstone Muscular Dystrophy Center. It studies muscle stem cells, called satellite cells, and therapies for Duchenne muscular dystrophy (DMD).",
       labSrc: { text: "Asakura Lab, University of Minnesota", url: "https://med.umn.edu/neurology/research/asakura-lab" },
       text: [
-        "I joined the lab in September 2026 as a myology research assistant.",
+        "I was a myology research assistant in the lab in fall 2026.",
         "My project looked at how albumin is distributed in healthy skeletal muscle and in muscle regenerating after a cardiotoxin injury. I cut thin sections on a cryostat, stained them with hematoxylin and eosin (H&E), and compared injured and uninjured tissue.",
         "Albumin is a blood protein. It normally stays outside muscle fibers, so finding it inside one means the fiber's membrane was damaged. Fig. 4 shows why that happens in DMD, how damaged muscle repairs itself, and the stem cells that do the work.",
       ],
@@ -316,7 +316,7 @@ const CONTENT = {
   /* Methods */
   methodsPage: { title: "Lab skills I use", lede: "The techniques and tools I use in the lab." },
   methods: [
-    { h: "Histology", p: "I cut skeletal muscle on a cryostat and stain the sections with hematoxylin and eosin (H&E).",
+    { h: "Histology", p: "I have cut skeletal muscle on a cryostat and stained the sections with hematoxylin and eosin (H&E).",
       terms: ["Histology", "H&E staining", "Cryostat sectioning"] },
     { h: "Working with mice", p: "I isolate bone marrow, give intraperitoneal injections, and do echocardiography in mouse models, including mice with LysM-Cre gene deletion.",
       terms: ["Murine bone marrow isolation", "Intraperitoneal (IP) injection", "Echocardiography"] },
